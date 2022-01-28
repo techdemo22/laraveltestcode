@@ -38,3 +38,8 @@ What skills we evaluate are:
 
 -----
 Write your documentation below.
+## Developer Comments
+ - The Home page will contain the logged in user's post or if user is not loggedin then it will show login/signup Link
+ - For listing page, 5 post will be shown on 1 page and pagination will be visible only if posts are more then 5
+ - We have change the status fiels so it will be radio select option with 3 status('Draft','Members Only','Future')
+ - If future status is chosen then it will show the future date field(on which the post will be available to the public view)
