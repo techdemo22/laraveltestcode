@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,5 +13,18 @@
 */
 
 Auth::routes();
+
 Route::resource('posts', 'PostController');
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('posts', 'PostController@index')->name('posts.index');
+Route::get('posts/{id}', 'PostController@show')->name('posts.show');
+Route::get('your-posts', 'PostController@myposts')->name('posts.myposts');
+Route::group(['middleware' => ['user']], function() {//after login routes
+	Route::get('posts/create', 'PostController@create')->name('posts.create');
+	Route::post('posts/store', 'PostController@store')->name('posts.store');
+	Route::POST('posts/update/{id}', 'PostController@update')->name('posts.update');
+	Route::get('posts/delete/{id}', 'PostController@destroy')->name('posts.destroy');
+});
+
+
+Route::get('/', 'PostController@myposts')->name('home');
+Route::get('/home', 'PostController@myposts')->name('home_new');
